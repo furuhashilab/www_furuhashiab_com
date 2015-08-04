@@ -106,6 +106,7 @@ a {
     font-size: 1rem; } }
 
 .main-content :first-child {
+  text-align: center;
   margin-top: 0; }
 .main-content img {
   max-width: 100%; }
