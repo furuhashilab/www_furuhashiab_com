@@ -1,0 +1,15 @@
+#container4sns {
+ width:1024px;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+#timeline4facebook {
+ width:500px;
+ float:left;
+}
+
+#timeline4twitter {
+ width:500px;
+ float:right;
+}
