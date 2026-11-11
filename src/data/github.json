@@ -1,0 +1,57 @@
+{
+  "fetchedAt": "2026-11-11T08:03:53.101Z",
+  "publicRepos": 532,
+  "followers": 41,
+  "thesisRepos": 127,
+  "hackathonRepos": 25,
+  "featured": [
+    {
+      "name": "README",
+      "url": "https://github.com/furuhashilab/README",
+      "description": "古橋研究室（古橋ゼミ）に興味のある学生は、最初に読んでください。これを熟読できていない学生は指導対象から外します。",
+      "stars": 27,
+      "pushed": "2026-06-15",
+      "language": null
+    },
+    {
+      "name": "AGU_SIS2017_1",
+      "url": "https://github.com/furuhashilab/AGU_SIS2017_1",
+      "description": "空間情報システム入門I レポジトリ",
+      "stars": 14,
+      "pushed": "2017-07-13",
+      "language": null
+    },
+    {
+      "name": "LearnMapTiles",
+      "url": "https://github.com/furuhashilab/LearnMapTiles",
+      "description": "地図タイルの技術についてまとめたもの",
+      "stars": 7,
+      "pushed": "2025-02-08",
+      "language": null
+    },
+    {
+      "name": "courseofstudy4highschool2022japan",
+      "url": "https://github.com/furuhashilab/courseofstudy4highschool2022japan",
+      "description": "2022年度スタート予定の文科省【地理・歴史】高等学校新学習指導要領リポジトリ",
+      "stars": 7,
+      "pushed": "2021-09-01",
+      "language": "HTML"
+    },
+    {
+      "name": "GEE4GSC",
+      "url": "https://github.com/furuhashilab/GEE4GSC",
+      "description": "Google Earth Engine 活用法メモ",
+      "stars": 7,
+      "pushed": "2019-05-10",
+      "language": null
+    },
+    {
+      "name": "TokyoEYESonMilano2025",
+      "url": "https://github.com/furuhashilab/TokyoEYESonMilano2025",
+      "description": "Tokyo EYES on Milano 2025 MAP",
+      "stars": 6,
+      "pushed": "2026-04-01",
+      "language": null
+    }
+  ]
+}

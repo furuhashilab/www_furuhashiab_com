@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import { t, SOCIALS, type Lang } from '../i18n';
+import medium from '../data/medium.json';
+import note from '../data/note.json';
+import gh from '../data/github.json';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t[lang];
+const ghv: Record<string, number> = { repos: gh.publicRepos, thesis: gh.thesisRepos, hack: gh.hackathonRepos };
+const feeds = [
+  { name: c.medium, items: medium.slice(0, 3), href: 'https://medium.com/furuhashilab' },
+  { name: c.note, items: note.slice(0, 3), href: 'https://note.com/mapconcierge' },
+];
+const built = new Date().toISOString().slice(0, 10);
+const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|\.github)$/i.test(r.name)).slice(0, 5);
+---
+<Base lang={lang}>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href={lang === 'ja' ? '/' : '/en/'}><b>FL</b>{lang === 'ja' ? '古橋研究室' : 'Furuhashi Lab'}</a>
+      <nav class="links" aria-label="Main">{c.nav.map(([h, l]) => <a href={h}>{l}</a>)}</nav>
+      <a class="lang" href={c.switchHref} hreflang={lang === 'ja' ? 'en' : 'ja'}>{c.switchLabel}</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap grid">
+        <div>
+          <span class="eyebrow">{c.heroKicker}</span>
+          <h1>{lang === 'ja' ? <mark>一億総伊能化</mark> : <mark>Billions Inō-zation</mark>}</h1>
+          <p class="en">{lang === 'ja' ? 'Billions Inō-zation' : '一億総伊能化'}</p>
+          <p class="sub">{c.heroSub}</p>
+          <p class="lead">{c.heroLead}</p>
+          <div class="btns">
+            <a class="btn" href="#students">{c.ctaStudents}</a>
+            <a class="btn alt" href="#companies">{c.ctaCompanies}</a>
+          </div>
+        </div>
+        <div class="mapbox" role="img" aria-label="Globe map">
+          <div id="map"></div>
+          <button id="proj" type="button">{c.mapToggle}</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="inozation" style="padding-top:24px">
+      <div class="inoz">
+        <div class="wrap">
+          <span class="eyebrow">Billions Inō-zation</span>
+          <h2>{c.inoTitle}</h2>
+          <p>{c.inoBody}</p>
+          <p class="aim">{c.inoAim}</p>
+          <small>{c.inoSrc}<a href="https://internet.watch.impress.co.jp/docs/column/chizu3/1621861.html" rel="noopener">{c.inoSrcName}</a></small>
+        </div>
+      </div>
+    </section>
+
+    <section id="what"><div class="wrap">
+      <h2>{c.whatTitle}</h2>
+      <div class="cards">{c.what.map((w) => <div class="card"><span class={`dot ${w.c}`}></span><h3>{w.t}</h3><p>{w.d}</p></div>)}</div>
+      <div class="nums">{c.numbers.map((n) => <div class="num"><b>{n.n}</b>{n.l}</div>)}</div>
+      <p class="muted"><small>{c.numbersNote}</small></p>
+    </div></section>
+
+    <section id="students" class="split"><div class="wrap">
+      <span class="eyebrow">For students</span>
+      <h2>{c.stTitle}</h2>
+      <p class="muted">{c.stLead}</p>
+      <div class="cards">{c.st.map((s) => <div class="card"><h3>{s.t}</h3><p>{s.d}</p></div>)}</div>
+      <p>{c.stAward}</p>
+      <div class="btns"><a class="btn" href="https://medium.com/furuhashilab" rel="noopener">{c.stBtn}</a><a class="btn alt" href="https://github.com/furuhashilab" rel="noopener">{c.stBtn2}</a></div>
+    </div></section>
+
+    <section id="companies" class="split co"><div class="wrap">
+      <span class="eyebrow">For partners</span>
+      <h2>{c.coTitle}</h2>
+      <p class="muted">{c.coLead}</p>
+      <div class="cards">{c.co.map((s) => <div class="card"><h3>{s.t}</h3><p>{s.d}</p></div>)}</div>
+      <div class="btns" style="margin-top:20px"><a class="btn" href="https://www.facebook.com/furuhashilab/" rel="noopener">{c.coBtn}</a></div>
+      <p class="muted"><small>{c.coNote}</small></p>
+    </div></section>
+
+    <section id="now"><div class="wrap">
+      <h2>{c.nowTitle}</h2>
+      <p class="muted">{c.nowSub}</p>
+      {feeds.map((f) => f.items.length > 0 && (
+        <div>
+          <h3 style="margin-top:24px">{f.name}</h3>
+          <div class="feed">{f.items.map((p) => (
+            <a class="post" href={p.url} rel="noopener">
+              {p.image ? <img src={p.image} alt="" loading="lazy" /> : <img alt="" />}
+              <div class="b"><span>{p.date}</span><strong>{p.title}</strong></div>
+            </a>))}</div>
+          <a class="more" href={f.href} rel="noopener">{c.allPosts}</a>
+        </div>))}
+
+      <h2 style="margin-top:56px">{c.ghTitle}</h2>
+      <p class="muted">{c.ghLead}</p>
+      <div class="stats">{c.ghStats.map(([k, l]) => <div class="stat"><b>{ghv[k]}</b>{l}</div>)}</div>
+      {featured.length > 0 && <>
+        <h3>{c.ghFeatured}</h3>
+        <ul class="repos">{featured.map((r: any) => <li><a href={r.url} rel="noopener"><code>{r.name}</code> <span class="muted">— {r.description}</span></a></li>)}</ul>
+      </>}
+      <a class="more" href="https://github.com/furuhashilab" rel="noopener">{c.ghMore}</a>
+    </div></section>
+
+    <section id="follow" class="split"><div class="wrap">
+      <h2>{c.followTitle}</h2>
+      <p class="muted">{c.followSub}</p>
+      <div class="socials">{SOCIALS.map((s) => <a class={`soc ${s.color}`} href={s.url} rel="noopener me">{s.label}</a>)}</div>
+    </div></section>
+
+    <section id="access"><div class="wrap">
+      <h2>{c.accessTitle}</h2>
+      <p>{c.address}<br /><span class="muted">{c.accessNote}</span></p>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap">
+    <p>{c.license}</p>
+    <p><a href={c.archiveHref}>{c.archive}</a> · <a href="https://github.com/furuhashilab/www_furuhashiab_com">GitHub</a></p>
+    <p>{c.thanks} · {c.updated}: {built}</p>
+  </div></footer>
+
+  <script>
+    import * as maplibregl from 'maplibre-gl';
+    import 'maplibre-gl/dist/maplibre-gl.css';
+
+    const el = document.getElementById('map');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (el) {
+      // Sagamihara campus, Aoyama Gakuin University (WGS84)
+      const center: [number, number] = [139.4027, 35.5663];
+      const map = new maplibregl.Map({
+        container: el,
+        style: 'https://tiles.openfreemap.org/styles/liberty',
+        center, zoom: 1.6, pitch: 0, attributionControl: { compact: true },
+        interactive: true,
+      });
+      map.scrollZoom.disable();
+      map.on('style.load', () => {
+        map.setProjection({ type: 'globe' });
+        // Elevation: Mapterhorn terrarium PNG/WebP DEM
+        map.addSource('mapterhorn', { type: 'raster-dem', tiles: ['https://tiles.mapterhorn.com/{z}/{x}/{y}.webp'], tileSize: 512, encoding: 'terrarium', maxzoom: 12, attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>' });
+        map.setTerrain({ source: 'mapterhorn', exaggeration: 1.2 });
+        map.addSource('lab', { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: center } } });
+        map.addLayer({ id: 'lab-halo', type: 'circle', source: 'lab', paint: { 'circle-radius': 16, 'circle-color': '#ffd23f', 'circle-opacity': 0.5 } });
+        map.addLayer({ id: 'lab-dot', type: 'circle', source: 'lab', paint: { 'circle-radius': 7, 'circle-color': '#ff6b5e', 'circle-stroke-color': '#14213d', 'circle-stroke-width': 3 } });
+        if (!reduce) setTimeout(() => map.flyTo({ center, zoom: 11.5, pitch: 50, duration: 6000, essential: false }), 1200);
+      });
+      let globe = true;
+      document.getElementById('proj')?.addEventListener('click', () => {
+        globe = !globe;
+        map.setProjection({ type: globe ? 'globe' : 'mercator' });
+      });
+    }
+  </script>
+</Base>

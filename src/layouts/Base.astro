@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import { t, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t[lang];
+const canonical = new URL(lang === 'ja' ? '/' : '/en/', Astro.site).href;
+const ogImage = new URL('/images/og-furuhashilab.jpg', Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org', '@type': 'ResearchOrganization',
+  name: lang === 'ja' ? '青山学院大学 地球社会共生学部 古橋研究室' : 'Furuhashi Lab, Aoyama Gakuin University',
+  alternateName: ['Furuhashi Lab', '古橋研究室'], url: 'https://furuhashilab.com/', foundingDate: '2017',
+  parentOrganization: { '@type': 'CollegeOrUniversity', name: 'Aoyama Gakuin University', url: 'https://www.aoyama.ac.jp/' },
+  sameAs: ['https://medium.com/furuhashilab', 'https://github.com/furuhashilab', 'https://x.com/furuhashilab', 'https://www.instagram.com/furuhashilab/', 'https://www.youtube.com/@furuhashilabs', 'https://www.facebook.com/furuhashilab/', 'https://note.com/mapconcierge/m/mccb30c9c0673'],
+};
+---
+<!doctype html>
+<html lang={c.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{c.title}</title>
+    <meta name="description" content={c.desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="ja" href="https://furuhashilab.com/" />
+    <link rel="alternate" hreflang="en" href="https://furuhashilab.com/en/" />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Furuhashi Lab" />
+    <meta property="og:title" content={c.title} />
+    <meta property="og:description" content={c.desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@furuhashilab" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body><slot /></body>
+</html>
