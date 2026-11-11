@@ -146,7 +146,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (el) {
       type Place = { name: string; center: [number, number]; zoom: number; pitch: number };
-      // [lng, lat] WGS84. 0: Sagamihara campus, 1: Furuhashi Lab ANNEX (OSM way 229865711, Yokoze, Saitama)
+      // [lng, lat] WGS84, see src/i18n.ts: 0 Furuhashi Lab (Sagamihara), 1 Tsukumana Lab (Aoyama), 2 ANNEX (Yokoze)
       const places: Place[] = JSON.parse(el.dataset.places || '[]');
       const cap = document.getElementById('mapcap');
       const map = new maplibregl.Map({
