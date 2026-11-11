@@ -47,6 +47,16 @@ nav.links a:hover { text-decoration: underline wavy var(--coral); }
 .inoz { background: var(--navy); color: var(--cream); border: 2px solid var(--line); border-radius: 40px; padding: 48px 32px; margin: 0 16px; }
 .inoz .eyebrow { background: var(--mint); }
 .inoz p { max-width: 40em; }
+.inoz-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.inoz-text { min-width: 0; }
+.prof { position: relative; margin: 0; justify-self: center; width: 100%; max-width: 520px; }
+.prof::before { content: ''; position: absolute; inset: 14px -14px -14px 14px; border-radius: 36px; background: var(--yellow); z-index: 0; }
+.prof::after { content: ''; position: absolute; width: 84px; height: 84px; border-radius: 50%; background: var(--mint); border: 3px solid var(--cream); top: -26px; right: -22px; z-index: 2; }
+.prof img { position: relative; z-index: 1; display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 28%; border: 3px solid var(--cream); border-radius: 32px; background: var(--line); }
+.prof figcaption { position: absolute; z-index: 3; left: -14px; bottom: 22px; background: var(--coral); color: #14213d; border: 3px solid var(--navy); border-radius: 18px; padding: 6px 16px; line-height: 1.35; transform: rotate(-2deg); }
+.prof figcaption b { display: block; font-size: 1.15rem; }
+.prof figcaption span { font-size: .78rem; font-weight: 700; }
+@media (max-width: 860px) { .inoz-grid { grid-template-columns: 1fr; gap: 40px; } .prof { max-width: 440px; margin-right: 14px; } .inoz { padding: 40px 20px; } }
 .inoz .aim { font-weight: 900; font-size: 1.15rem; }
 .inoz a { color: var(--yellow); }
 .inoz small { opacity: .8; }

@@ -46,12 +46,18 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
 
     <section id="inozation" style="padding-top:24px">
       <div class="inoz">
-        <div class="wrap">
-          <span class="eyebrow">Billions Inō-zation</span>
-          <h2>{c.inoTitle}</h2>
-          <p>{c.inoBody}</p>
-          <p class="aim">{c.inoAim}</p>
-          <small>{c.inoSrc}<a href="https://internet.watch.impress.co.jp/docs/column/chizu3/1621861.html" rel="noopener">{c.inoSrcName}</a></small>
+        <div class="wrap inoz-grid">
+          <div class="inoz-text">
+            <span class="eyebrow">Billions Inō-zation</span>
+            <h2>{c.inoTitle}</h2>
+            <p>{c.inoBody}</p>
+            <p class="aim">{c.inoAim}</p>
+            <small>{c.inoSrc}<a href="https://internet.watch.impress.co.jp/docs/column/chizu3/1621861.html" rel="noopener">{c.inoSrcName}</a></small>
+          </div>
+          <figure class="prof">
+            <img src="/images/furuhashi-taichi.jpg" width="1200" height="1099" alt={c.profAlt} loading="lazy" decoding="async" />
+            <figcaption><b>{c.profName}</b><span>{c.profRole}</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -118,7 +124,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
   </main>
 
   <footer><div class="wrap">
-    <p>{c.license}</p>
+    <p>{c.license} {c.profCredit}.</p>
     <p><a href={c.archiveHref}>{c.archive}</a> · <a href="https://github.com/furuhashilab/www_furuhashiab_com">GitHub</a></p>
     <p>{c.thanks} · {c.updated}: {built}</p>
   </div></footer>
