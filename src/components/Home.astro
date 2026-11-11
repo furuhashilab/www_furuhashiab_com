@@ -154,9 +154,32 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
         map.addLayer({ id: 'lab-dot', type: 'circle', source: 'lab', paint: { 'circle-radius': 7, 'circle-color': '#ff6b5e', 'circle-stroke-color': '#14213d', 'circle-stroke-width': 3 } });
         // OpenFreeMap "liberty" has 3D buildings (building-3d, visible from z14): fly in to see them
         const target = { center, zoom: 15.6, pitch: 62, bearing: -20 };
-        if (reduce) map.jumpTo(target);
-        else setTimeout(() => map.flyTo({ ...target, duration: 7000, essential: false }), 800);
+        if (reduce) {
+          map.jumpTo(target); // no animation, no orbit for prefers-reduced-motion
+        } else {
+          setTimeout(() => map.flyTo({ ...target, duration: 7000, essential: false }), 800);
+          map.once('moveend', () => startOrbit());
+        }
       });
+
+      // Orbit: rotate the camera around the lab (center stays fixed, only bearing changes).
+      // Pauses while the user touches the map, when offscreen, or when the tab is hidden.
+      const DEG_PER_SEC = 6; // one full turn in 60 s
+      let orbiting = false, last = 0, userHold = false, visible = true, resumeTimer = 0;
+      const tick = (now: number) => {
+        if (!orbiting) return;
+        if (userHold || !visible || document.hidden) { last = 0; requestAnimationFrame(tick); return; }
+        if (last) map.setBearing((map.getBearing() + ((now - last) / 1000) * DEG_PER_SEC) % 360);
+        last = now;
+        requestAnimationFrame(tick);
+      };
+      const startOrbit = () => { if (orbiting) return; orbiting = true; requestAnimationFrame(tick); };
+      const hold = () => { userHold = true; clearTimeout(resumeTimer); };
+      const release = () => { clearTimeout(resumeTimer); resumeTimer = window.setTimeout(() => { userHold = false; last = 0; }, 4000); };
+      for (const ev of ['pointerdown', 'touchstart', 'wheel']) el.addEventListener(ev, hold, { passive: true });
+      for (const ev of ['pointerup', 'pointercancel', 'touchend']) el.addEventListener(ev, release, { passive: true });
+      el.addEventListener('wheel', release, { passive: true });
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(el);
       let globe = true;
       document.getElementById('proj')?.addEventListener('click', () => {
         globe = !globe;
