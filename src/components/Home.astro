@@ -114,7 +114,11 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
     <section id="follow" class="split"><div class="wrap">
       <h2>{c.followTitle}</h2>
       <p class="muted">{c.followSub}</p>
-      <div class="socials">{SOCIALS.map((s) => <a class={`soc ${s.color}`} href={s.url} rel="noopener me">{s.label}</a>)}</div>
+      <div class="socials">{SOCIALS.map((s) => (
+        <a class={`soc ${s.color}`} href={s.url} rel="noopener me">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d={s.icon} /></svg>
+          <span>{s.label}</span>
+        </a>))}</div>
     </div></section>
 
     <section id="access"><div class="wrap">

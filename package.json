@@ -16,5 +16,8 @@
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.4.10",
     "maplibre-gl": "^6.17.0"
+  },
+  "devDependencies": {
+    "simple-icons": "^16.37.0"
   }
 }

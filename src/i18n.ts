@@ -1,13 +1,15 @@
+import { siMedium, siNote, siGithub, siX, siInstagram, siYoutube, siFacebook } from 'simple-icons';
+
 export type Lang = 'ja' | 'en';
 
 export const SOCIALS = [
-  { key: 'medium', label: 'Medium', url: 'https://medium.com/furuhashilab', color: 'ink' },
-  { key: 'note', label: 'note', url: 'https://note.com/mapconcierge/m/mccb30c9c0673', color: 'mint' },
-  { key: 'github', label: 'GitHub', url: 'https://github.com/furuhashilab', color: 'ink' },
-  { key: 'x', label: 'X', url: 'https://x.com/furuhashilab', color: 'ink' },
-  { key: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/furuhashilab/', color: 'coral' },
-  { key: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@furuhashilabs', color: 'coral' },
-  { key: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/furuhashilab/', color: 'sky' },
+  { key: 'medium', label: 'Medium', url: 'https://medium.com/furuhashilab', color: 'ink', icon: siMedium.path },
+  { key: 'note', label: 'note', url: 'https://note.com/mapconcierge/m/mccb30c9c0673', color: 'mint', icon: siNote.path },
+  { key: 'github', label: 'GitHub', url: 'https://github.com/furuhashilab', color: 'ink', icon: siGithub.path },
+  { key: 'x', label: 'X', url: 'https://x.com/furuhashilab', color: 'ink', icon: siX.path },
+  { key: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/furuhashilab/', color: 'coral', icon: siInstagram.path },
+  { key: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@furuhashilabs', color: 'coral', icon: siYoutube.path },
+  { key: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/furuhashilab/', color: 'sky', icon: siFacebook.path },
 ] as const;
 
 export const t = {

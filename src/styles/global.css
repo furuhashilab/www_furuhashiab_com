@@ -91,11 +91,13 @@ nav.links a:hover { text-decoration: underline wavy var(--coral); }
 .repos code { font-weight: 900; }
 
 .socials { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-.soc { text-decoration: none; font-weight: 900; padding: 12px 24px; border-radius: 99px; border: 2px solid var(--ink); background: var(--surface); box-shadow: 0 4px 0 var(--ink); }
+.soc { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; padding: 10px 22px 10px 16px; border-radius: 99px; border: 2px solid var(--ink); background: var(--surface); box-shadow: 0 4px 0 var(--ink); }
 .soc.mint { background: var(--mint); color: #14213d; } .soc.coral { background: var(--coral); color: #14213d; } .soc.sky { background: var(--sky); color: #14213d; }
 .soc.ink { background: var(--navy); color: var(--cream); }
+.soc svg { flex: none; transition: transform .15s; }
+.soc:hover svg { transform: scale(1.18) rotate(-6deg); }
 .soc:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
 
 footer { border-top: 1px solid var(--line); padding: 32px 0 56px; font-size: .88rem; color: var(--muted); }
 footer p { margin: 4px 0; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .soc, .post { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .soc, .post, .soc svg { transition: none; } .soc:hover svg { transform: none; } }
