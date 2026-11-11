@@ -152,7 +152,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
       const navLabel = el.dataset.navLabel || 'Google Maps';
 
       // Navigation popup (Google Maps short link) shown while we are at a place, closed when flying away.
-      const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, closeOnMove: false, offset: 18, maxWidth: '220px', className: 'navpop' });
+      const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, closeOnMove: false, offset: 18, maxWidth: '280px', className: 'navpop' });
       const showNav = (p: Place) => {
         const box = document.createElement('div');
         const name = document.createElement('strong');

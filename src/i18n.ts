@@ -22,8 +22,8 @@ export const t = {
     // [lng, lat] WGS84, taken from the Google Maps place pages behind each `nav` link (Google Maps place coordinates).
     // Order of the hero-map tour: Sagamihara -> Aoyama (Tsukumana Lab) -> ANNEX.
     places: [
-      { name: '古橋研究室', center: [139.4027603, 35.5663416], zoom: 15.6, pitch: 62, nav: 'https://maps.app.goo.gl/8WGM9B3fwkft4iARA' },
-      { name: 'つくまなラボ', center: [139.7100416, 35.6599625], zoom: 16.2, pitch: 62, nav: 'https://maps.app.goo.gl/TRbWr9otemLaodY2A' },
+      { name: '古橋研究室（相模原キャンパス）', center: [139.4027603, 35.5663416], zoom: 15.6, pitch: 62, nav: 'https://maps.app.goo.gl/8WGM9B3fwkft4iARA' },
+      { name: 'つくまなラボ（青山キャンパス）', center: [139.7100416, 35.6599625], zoom: 16.2, pitch: 62, nav: 'https://maps.app.goo.gl/TRbWr9otemLaodY2A' },
       { name: '古橋研究室 ANNEX（埼玉県横瀬町）', center: [139.1071277, 35.9820981], zoom: 15.8, pitch: 62, nav: 'https://maps.app.goo.gl/AHvBnRDCBwbgSGVu7' },
     ],
     navLabel: 'Google マップでナビ',
@@ -93,8 +93,8 @@ export const t = {
     nav: [['#inozation', 'Inō-zation'], ['#what', 'Research'], ['#students', 'For students'], ['#companies', 'For partners'], ['#now', 'Latest'], ['#follow', 'Follow']],
     switchLabel: '日本語', switchHref: '/',
     places: [
-      { name: 'Furuhashi Lab', center: [139.4027603, 35.5663416], zoom: 15.6, pitch: 62, nav: 'https://maps.app.goo.gl/8WGM9B3fwkft4iARA' },
-      { name: 'Tsukumana Lab (Aoyama Creative Learning Lab)', center: [139.7100416, 35.6599625], zoom: 16.2, pitch: 62, nav: 'https://maps.app.goo.gl/TRbWr9otemLaodY2A' },
+      { name: 'Furuhashi Lab (Sagamihara Campus)', center: [139.4027603, 35.5663416], zoom: 15.6, pitch: 62, nav: 'https://maps.app.goo.gl/8WGM9B3fwkft4iARA' },
+      { name: 'Tsukumana Lab (Aoyama Campus)', center: [139.7100416, 35.6599625], zoom: 16.2, pitch: 62, nav: 'https://maps.app.goo.gl/TRbWr9otemLaodY2A' },
       { name: 'Furuhashi Lab ANNEX (Yokoze, Saitama)', center: [139.1071277, 35.9820981], zoom: 15.8, pitch: 62, nav: 'https://maps.app.goo.gl/AHvBnRDCBwbgSGVu7' },
     ],
     navLabel: 'Navigate with Google Maps',
