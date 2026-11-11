@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Logo from './Logo.astro';
 import { t, SOCIALS, type Lang } from '../i18n';
 import medium from '../data/medium.json';
 import note from '../data/note.json';
@@ -18,7 +19,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
 <Base lang={lang}>
   <header class="top">
     <div class="wrap">
-      <a class="brand" href={lang === 'ja' ? '/' : '/en/'}><b>FL</b>{lang === 'ja' ? '古橋研究室' : 'Furuhashi Lab'}</a>
+      <a class="brand" href={lang === 'ja' ? '/' : '/en/'}><span class="logo"><Logo /></span><span>{lang === 'ja' ? '古橋研究室' : 'Furuhashi Lab'}</span></a>
       <nav class="links" aria-label="Main">{c.nav.map(([h, l]) => <a href={h}>{l}</a>)}</nav>
       <a class="lang" href={c.switchHref} hreflang={lang === 'ja' ? 'en' : 'ja'}>{c.switchLabel}</a>
     </div>
