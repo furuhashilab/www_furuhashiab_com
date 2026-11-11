@@ -128,6 +128,9 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
     import * as maplibregl from 'maplibre-gl';
     import 'maplibre-gl/dist/maplibre-gl.css';
 
+    // Worker files are copied to /vendor/maplibre/ by scripts/copy-maplibre-worker.mjs
+    maplibregl.setWorkerUrl('/vendor/maplibre/maplibre-gl-worker.mjs');
+
     const el = document.getElementById('map');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (el) {
@@ -139,6 +142,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
         center, zoom: 1.6, pitch: 0, attributionControl: { compact: true },
         interactive: true,
       });
+      (window as any).__map = map; // handy for debugging in DevTools
       map.scrollZoom.disable();
       map.on('style.load', () => {
         map.setProjection({ type: 'globe' });
@@ -148,7 +152,10 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
         map.addSource('lab', { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: center } } });
         map.addLayer({ id: 'lab-halo', type: 'circle', source: 'lab', paint: { 'circle-radius': 16, 'circle-color': '#ffd23f', 'circle-opacity': 0.5 } });
         map.addLayer({ id: 'lab-dot', type: 'circle', source: 'lab', paint: { 'circle-radius': 7, 'circle-color': '#ff6b5e', 'circle-stroke-color': '#14213d', 'circle-stroke-width': 3 } });
-        if (!reduce) setTimeout(() => map.flyTo({ center, zoom: 11.5, pitch: 50, duration: 6000, essential: false }), 1200);
+        // OpenFreeMap "liberty" has 3D buildings (building-3d, visible from z14): fly in to see them
+        const target = { center, zoom: 15.6, pitch: 62, bearing: -20 };
+        if (reduce) map.jumpTo(target);
+        else setTimeout(() => map.flyTo({ ...target, duration: 7000, essential: false }), 800);
       });
       let globe = true;
       document.getElementById('proj')?.addEventListener('click', () => {
