@@ -19,13 +19,14 @@ export const t = {
     desc: '誰もが最先端技術で自由に地図をつくり、活用できる社会へ。青山学院大学 地球社会共生学部 古橋研究室（Furuhashi Lab）の公式サイト。OpenStreetMap・危機マッピング・ドローン・3D都市モデル。',
     nav: [['#inozation', '一億総伊能化'], ['#what', '研究'], ['#students', '学生のみなさんへ'], ['#companies', '企業・自治体のみなさんへ'], ['#now', '最新情報'], ['#follow', 'つながる']],
     switchLabel: 'English', switchHref: '/en/',
-    // [lng, lat] WGS84. Order of the hero-map tour: Sagamihara -> Aoyama (Tsukumana Lab) -> ANNEX.
-    // Tsukumana Lab: OSM way 1161223131 (35.66053, 139.71186); ANNEX: OSM way 229865711 (35.98212, 139.10714).
+    // [lng, lat] WGS84, taken from the Google Maps place pages behind each `nav` link (Google Maps place coordinates).
+    // Order of the hero-map tour: Sagamihara -> Aoyama (Tsukumana Lab) -> ANNEX.
     places: [
-      { name: '古橋研究室', center: [139.4027, 35.5663], zoom: 15.6, pitch: 62 },
-      { name: 'つくまなラボ', center: [139.7118559, 35.6605256], zoom: 16.2, pitch: 62 },
-      { name: '古橋研究室 ANNEX（埼玉県横瀬町）', center: [139.1071385, 35.9821211], zoom: 15.8, pitch: 62 },
+      { name: '古橋研究室', center: [139.4027603, 35.5663416], zoom: 15.6, pitch: 62, nav: 'https://maps.app.goo.gl/8WGM9B3fwkft4iARA' },
+      { name: 'つくまなラボ', center: [139.7100416, 35.6599625], zoom: 16.2, pitch: 62, nav: 'https://maps.app.goo.gl/TRbWr9otemLaodY2A' },
+      { name: '古橋研究室 ANNEX（埼玉県横瀬町）', center: [139.1071277, 35.9820981], zoom: 15.8, pitch: 62, nav: 'https://maps.app.goo.gl/AHvBnRDCBwbgSGVu7' },
     ],
+    navLabel: 'Google マップでナビ',
     heroKicker: '青山学院大学 地球社会共生学部 古橋研究室',
     heroSub: '誰もが、地図をつくる側へ。',
     heroLead: 'GPS/GNSS が標準搭載されたスマートフォンやドローンで、誰もが地図を「使う」だけでなく「つくり・更新する」。最先端技術で、そんな社会を実装する研究室です。',
@@ -92,10 +93,11 @@ export const t = {
     nav: [['#inozation', 'Inō-zation'], ['#what', 'Research'], ['#students', 'For students'], ['#companies', 'For partners'], ['#now', 'Latest'], ['#follow', 'Follow']],
     switchLabel: '日本語', switchHref: '/',
     places: [
-      { name: 'Furuhashi Lab', center: [139.4027, 35.5663], zoom: 15.6, pitch: 62 },
-      { name: 'Tsukumana Lab (Aoyama Creative Learning Lab)', center: [139.7118559, 35.6605256], zoom: 16.2, pitch: 62 },
-      { name: 'Furuhashi Lab ANNEX (Yokoze, Saitama)', center: [139.1071385, 35.9821211], zoom: 15.8, pitch: 62 },
+      { name: 'Furuhashi Lab', center: [139.4027603, 35.5663416], zoom: 15.6, pitch: 62, nav: 'https://maps.app.goo.gl/8WGM9B3fwkft4iARA' },
+      { name: 'Tsukumana Lab (Aoyama Creative Learning Lab)', center: [139.7100416, 35.6599625], zoom: 16.2, pitch: 62, nav: 'https://maps.app.goo.gl/TRbWr9otemLaodY2A' },
+      { name: 'Furuhashi Lab ANNEX (Yokoze, Saitama)', center: [139.1071277, 35.9820981], zoom: 15.8, pitch: 62, nav: 'https://maps.app.goo.gl/AHvBnRDCBwbgSGVu7' },
     ],
+    navLabel: 'Navigate with Google Maps',
     heroKicker: 'Furuhashi Lab · Aoyama Gakuin University',
     heroSub: 'Everyone can be a mapmaker.',
     heroLead: 'With GNSS-equipped smartphones and drones, everyone can not only use maps but make and update them. We put that society into practice with cutting-edge technology.',

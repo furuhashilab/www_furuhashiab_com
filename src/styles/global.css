@@ -104,3 +104,13 @@ nav.links a:hover { text-decoration: underline wavy var(--coral); }
 footer { border-top: 1px solid var(--line); padding: 32px 0 56px; font-size: .88rem; color: var(--muted); }
 footer p { margin: 4px 0; }
 @media (prefers-reduced-motion: reduce) { .brand .logo { transition: none; } .brand:hover .logo { transform: none; } html { scroll-behavior: auto; } .btn, .soc, .post, .soc svg { transition: none; } .soc:hover svg { transform: none; } }
+
+/* Map navigation popup (MapLibre) */
+.navpop .maplibregl-popup-content { background: var(--cream); color: #14213d; border: 2px solid #14213d; border-radius: 16px; padding: 8px 14px 10px; box-shadow: 0 4px 0 #14213d; font-family: var(--font); line-height: 1.4; }
+.navpop .maplibregl-popup-content strong { display: block; font-size: .85rem; }
+.navpop .maplibregl-popup-content a { display: inline-block; margin-top: 4px; font-size: .8rem; font-weight: 900; color: #14213d; background: var(--yellow); border: 2px solid #14213d; border-radius: 99px; padding: 0 12px; text-decoration: none; }
+.navpop .maplibregl-popup-content a:hover { background: var(--coral); }
+.navpop.maplibregl-popup-anchor-top .maplibregl-popup-tip, .navpop.maplibregl-popup-anchor-top-left .maplibregl-popup-tip, .navpop.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: #14213d; }
+.navpop.maplibregl-popup-anchor-bottom .maplibregl-popup-tip, .navpop.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip, .navpop.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: #14213d; }
+.navpop.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: #14213d; }
+.navpop.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: #14213d; }

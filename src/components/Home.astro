@@ -40,7 +40,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
           </div>
         </div>
         <div class="mapbox" role="img" aria-label="Globe map">
-          <div id="map" data-places={JSON.stringify(c.places)}></div>
+          <div id="map" data-places={JSON.stringify(c.places)} data-nav-label={c.navLabel}></div>
           <div class="mapcap" id="mapcap" aria-live="polite">{c.places[0].name}</div>
         </div>
       </div>
@@ -145,10 +145,24 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
     const el = document.getElementById('map');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (el) {
-      type Place = { name: string; center: [number, number]; zoom: number; pitch: number };
+      type Place = { name: string; center: [number, number]; zoom: number; pitch: number; nav: string };
       // [lng, lat] WGS84, see src/i18n.ts: 0 Furuhashi Lab (Sagamihara), 1 Tsukumana Lab (Aoyama), 2 ANNEX (Yokoze)
       const places: Place[] = JSON.parse(el.dataset.places || '[]');
       const cap = document.getElementById('mapcap');
+      const navLabel = el.dataset.navLabel || 'Google Maps';
+
+      // Navigation popup (Google Maps short link) shown while we are at a place, closed when flying away.
+      const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, closeOnMove: false, offset: 18, maxWidth: '220px', className: 'navpop' });
+      const showNav = (p: Place) => {
+        const box = document.createElement('div');
+        const name = document.createElement('strong');
+        name.textContent = p.name;
+        const a = document.createElement('a');
+        a.href = p.nav; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.textContent = navLabel + ' →';
+        box.append(name, a);
+        popup.setLngLat(p.center).setDOMContent(box).addTo(map);
+      };
       const map = new maplibregl.Map({
         container: el,
         style: 'https://tiles.openfreemap.org/styles/liberty',
@@ -171,11 +185,13 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
       const travelTo = (i: number, duration: number, bearing?: number) => {
         idx = i; mode = 'travel'; elapsed = 0; last = 0;
         const p = places[i], my = ++token;
+        popup.remove();
         if (cap) cap.textContent = p.name;
         map.once('moveend', () => {
           if (my !== token) return;                     // superseded by a newer flight
           if (farFrom(p)) { mode = 'idle'; return; }    // interrupted by the user: retried on release
           mode = 'orbit'; elapsed = 0; last = 0;
+          showNav(p);
         });
         map.flyTo({ center: p.center, zoom: p.zoom, pitch: p.pitch, ...(bearing === undefined ? {} : { bearing }), duration, curve: 1.6, essential: false });
       };
@@ -216,6 +232,7 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
         // OpenFreeMap "liberty" has 3D buildings (building-3d, visible from z14)
         if (reduce) {
           map.jumpTo({ center: places[0].center, zoom: places[0].zoom, pitch: places[0].pitch, bearing: -20 });
+          showNav(places[0]);
         } else {
           setTimeout(() => travelTo(0, 7000, -20), 800);
           requestAnimationFrame(tick);
