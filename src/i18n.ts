@@ -19,6 +19,10 @@ export const t = {
     desc: '誰もが最先端技術で自由に地図をつくり、活用できる社会へ。青山学院大学 地球社会共生学部 古橋研究室（Furuhashi Lab）の公式サイト。OpenStreetMap・危機マッピング・ドローン・3D都市モデル。',
     nav: [['#inozation', '一億総伊能化'], ['#what', '研究'], ['#students', '学生のみなさんへ'], ['#companies', '企業・自治体のみなさんへ'], ['#now', '最新情報'], ['#follow', 'つながる']],
     switchLabel: 'English', switchHref: '/en/',
+    places: [
+      { name: '相模原キャンパス', center: [139.4027, 35.5663], zoom: 15.6, pitch: 62 },
+      { name: '古橋研究室 ANNEX（埼玉県横瀬町）', center: [139.1071385, 35.9821211], zoom: 15.8, pitch: 62 },
+    ],
     heroKicker: '青山学院大学 地球社会共生学部 古橋研究室',
     heroSub: '誰もが、地図をつくる側へ。',
     heroLead: 'GPS/GNSS が標準搭載されたスマートフォンやドローンで、誰もが地図を「使う」だけでなく「つくり・更新する」。最先端技術で、そんな社会を実装する研究室です。',
@@ -84,6 +88,10 @@ export const t = {
     desc: 'Furuhashi Lab (Aoyama Gakuin University, School of Global Studies and Collaboration): a society where everyone can make and use maps with cutting-edge technology. OpenStreetMap, crisis mapping, drones, 3D city models.',
     nav: [['#inozation', 'Inō-zation'], ['#what', 'Research'], ['#students', 'For students'], ['#companies', 'For partners'], ['#now', 'Latest'], ['#follow', 'Follow']],
     switchLabel: '日本語', switchHref: '/',
+    places: [
+      { name: 'Sagamihara Campus', center: [139.4027, 35.5663], zoom: 15.6, pitch: 62 },
+      { name: 'Furuhashi Lab ANNEX (Yokoze, Saitama)', center: [139.1071385, 35.9821211], zoom: 15.8, pitch: 62 },
+    ],
     heroKicker: 'Furuhashi Lab · Aoyama Gakuin University',
     heroSub: 'Everyone can be a mapmaker.',
     heroLead: 'With GNSS-equipped smartphones and drones, everyone can not only use maps but make and update them. We put that society into practice with cutting-edge technology.',
