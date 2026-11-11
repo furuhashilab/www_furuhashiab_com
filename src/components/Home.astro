@@ -40,7 +40,6 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
         </div>
         <div class="mapbox" role="img" aria-label="Globe map">
           <div id="map"></div>
-          <button id="proj" type="button">{c.mapToggle}</button>
         </div>
       </div>
     </div>
@@ -180,11 +179,6 @@ const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|
       for (const ev of ['pointerup', 'pointercancel', 'touchend']) el.addEventListener(ev, release, { passive: true });
       el.addEventListener('wheel', release, { passive: true });
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(el);
-      let globe = true;
-      document.getElementById('proj')?.addEventListener('click', () => {
-        globe = !globe;
-        map.setProjection({ type: globe ? 'globe' : 'mercator' });
-      });
     }
   </script>
 </Base>

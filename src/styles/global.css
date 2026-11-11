@@ -43,7 +43,6 @@ nav.links a:hover { text-decoration: underline wavy var(--coral); }
 .btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
 .mapbox { position: relative; border: 3px solid var(--ink); border-radius: 32px; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 1 / 1; background: #a9d6ff; }
 #map { position: absolute; inset: 0; }
-.mapbox button { position: absolute; right: 10px; bottom: 28px; z-index: 2; font: inherit; font-weight: 900; font-size: .8rem; border: 2px solid var(--ink); background: var(--surface); color: var(--ink); border-radius: 99px; padding: 2px 12px; cursor: pointer; }
 
 .inoz { background: var(--navy); color: var(--cream); border: 2px solid var(--line); border-radius: 40px; padding: 48px 32px; margin: 0 16px; }
 .inoz .eyebrow { background: var(--mint); }
