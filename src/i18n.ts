@@ -88,7 +88,7 @@ export const t = {
     inoTitle: 'What is Billions Inō-zation?',
     inoBody: 'Like Inō Tadataka, who made the first surveyed map of Japan, everyone stands on the side of making and updating maps, not just using them — and uses spatial information as a matter of course. Everyday smartphones with positioning are making this real.',
     inoSrc: 'Definition source: ', inoSrcName: 'Impress Internet Watch (Sep 11, 2024, in Japanese)',
-    inoAim: 'Our aim: to propose and practice a more resilient social system for a society where everyone is an Inō. (一億総伊能化 = “a hundred million Inōs”.)',
+    inoAim: 'Our aim: to propose and practice a more resilient social system for a society where everyone is an Inō. (一億総伊能化 = “Billions Inō-zation”. “Billions” means everyone, not a literal number.)',
     whatTitle: 'What we do',
     what: [
       { t: 'OpenStreetMap', d: 'Building the open map of the world that anyone can edit. We run mapping parties as YouthMappers AGU.', c: 'yellow' },
