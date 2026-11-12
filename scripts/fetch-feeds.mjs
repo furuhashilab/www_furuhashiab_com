@@ -3,6 +3,16 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
 const UA = 'Mozilla/5.0 (compatible; furuhashilab-site-build)';
+
+// Curated "featured repositories" (shown in this order on the site)
+const FEATURED = [
+  'MediumArchive4furuhashilab',
+  'MeshPeak',
+  'YOKOZEatlas2026',
+  'CommitForge4furuhashilab',
+  'osm-leaderboard',
+  'PlacenameKaraoke',
+];
 const out = (n) => new URL(`../src/data/${n}.json`, import.meta.url);
 
 const decode = (s) =>
@@ -39,7 +49,13 @@ async function github() {
     if (a.length < 100) break;
   }
   const own = repos.filter((r) => !r.fork);
-  const personal = /^(\d{4}gsc|\d{4}_?gsc|Hackathon|Hachathon|sotsuron)/i;
+  const byName = new Map(repos.map((r) => [r.name, r]));
+  // Featured repositories are curated by hand (order is kept). Details come from the API.
+  const featured = FEATURED.map((n) => {
+    const r = byName.get(n);
+    if (!r) throw new Error(`featured repo not found: ${n}`);
+    return { name: r.name, url: r.html_url, description: r.description || '', stars: r.stargazers_count, pushed: r.pushed_at.slice(0, 10), language: r.language };
+  });
   return {
     fetchedAt: new Date().toISOString(),
     publicRepos: org.public_repos,
@@ -47,10 +63,7 @@ async function github() {
     // Student-named repos are counted, never listed individually.
     thesisRepos: own.filter((r) => /^\d{4}gsc/i.test(r.name)).length,
     hackathonRepos: own.filter((r) => /^hac?kathon/i.test(r.name)).length,
-    featured: own.filter((r) => !personal.test(r.name) && r.description)
-      .sort((a, b) => b.stargazers_count - a.stargazers_count || (a.pushed_at < b.pushed_at ? 1 : -1))
-      .slice(0, 6)
-      .map((r) => ({ name: r.name, url: r.html_url, description: r.description, stars: r.stargazers_count, pushed: r.pushed_at.slice(0, 10), language: r.language })),
+    featured,
   };
 }
 

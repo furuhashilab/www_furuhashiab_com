@@ -14,7 +14,7 @@ const feeds = [
   { name: c.note, items: note.slice(0, 3), href: 'https://note.com/mapconcierge' },
 ];
 const built = new Date().toISOString().slice(0, 10);
-const featured = (gh.featured ?? []).filter((r: { name: string }) => !/^(README|\.github)$/i.test(r.name)).slice(0, 5);
+const featured = gh.featured ?? [];
 ---
 <Base lang={lang}>
   <header class="top">
